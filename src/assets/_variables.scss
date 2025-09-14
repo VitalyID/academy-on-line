@@ -1,0 +1,16 @@
+@use './_function.scss' as f;
+
+$base-font-size: 16px;
+$spacing-xs: f.rem(4);
+$spacing-sm: f.rem(8);
+$spacing-md: f.rem(16);
+$spacing-lg: f.rem(24);
+$spacing-xl: f.rem(32);
+$spacing-xxl: f.rem(48);
+
+$border-radius-sm: f.rem(4);
+$border-radius-md: f.rem(8);
+$border-radius-lg: f.rem(16);
+
+$bg-main-color: #f4f7fe;
+$bg-aside-color: #fefefe;

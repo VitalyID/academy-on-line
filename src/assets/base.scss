@@ -1,0 +1,12 @@
+@use './function' as f;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --aside-padding: #{f.rem(24)};
+  --main-padding: #{f.rem(24)};
+}
