@@ -4,7 +4,7 @@ defineProps({ iconID: { type: String, required: true } })
 
 <template>
   <svg class="icon">
-    <use xlink:href="`#${iconID}`"></use>
+    <use :xlink:href="`#${iconID}`"></use>
   </svg>
 </template>
 
