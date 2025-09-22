@@ -1,27 +1,31 @@
-<script setup>
-import Icon from './Icon.vue'
-defineProps({
-  icon: { type: String, default: null },
-  png: { type: String, default: null },
-  type: { type: String, validator: (value) => ['svg', 'png'].includes(value), default: null },
-  text: { type: String, required: true },
-  bold: { type: Number, default: null },
-})
-
-const getImageUrl = (name) => {
-  return new URL(`../../../assets/images/${name}`, import.meta.url).href
-}
-</script>
-
 <template>
   <div class="section">
     <div class="section__img" v-if="type">
-      <Icon v-if="type === 'svg' && icon" :iconID="icon" />
+      <!-- <Icon v-if="type === 'svg' && icon" :iconID="icon" /> -->
       <img v-if="type === 'png' && png" :src="getImageUrl(png)" alt="iconAsideSection" />
     </div>
     <span :style="{ fontWeight: bold }">{{ text }}</span>
   </div>
 </template>
+
+<script lang="ts" setup>
+// import Icon from './Icon.vue'
+defineProps({
+  // icon: { type: String, default: null },
+  png: { type: String, default: null },
+  type: {
+    type: String,
+    validator: (value: string) => ['svg', 'png'].includes(value),
+    default: null,
+  },
+  text: { type: String, required: true },
+  bold: { type: Number, default: null },
+})
+
+const getImageUrl = (name: string) => {
+  return new URL(`../../../assets/images/${name}`, import.meta.url as string).href
+}
+</script>
 
 <style lang="scss" scoped>
 @use '../../../assets/mixins' as m;

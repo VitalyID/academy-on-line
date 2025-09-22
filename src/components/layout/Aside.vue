@@ -1,13 +1,3 @@
-<script setup>
-import { SectionConfig } from '@/types/enum/sectionList'
-import Section from './common/Section.vue'
-
-const listSectionImage = Object.entries(SectionConfig).map((element, index) => {
-  return [...element, index === 1 || index === 3 ? 400 : 700]
-})
-console.log(listSectionImage)
-</script>
-
 <template>
   <div class="aside">
     <div class="aside__top">
@@ -23,6 +13,16 @@ console.log(listSectionImage)
     />
   </div>
 </template>
+
+<script lang="ts" setup>
+import { SectionConfig } from '@/types/enum/sectionList'
+import Section from './common/Section.vue'
+
+const listSectionImage = Object.entries(SectionConfig).map((element, index) => {
+  return [...element, index === 1 || index === 3 ? 400 : 700]
+})
+console.log(listSectionImage)
+</script>
 
 <style lang="scss" scoped>
 @use '../../assets/mixins' as m;

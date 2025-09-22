@@ -1,6 +1,3 @@
-<script setup>
-import Aside from './Aside.vue'
-</script>
 <template>
   <div class="wrap">
     <div class="container">
@@ -11,6 +8,10 @@ import Aside from './Aside.vue'
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import Aside from './Aside.vue'
+</script>
 
 <style lang="scss" scoped>
 @use '../../assets/mixins' as m;
