@@ -9,15 +9,20 @@
       :text="section.text"
       :png="section.png"
       type="png"
+      @click="handNavigate(section.text)"
     />
   </aside>
 </template>
 
 <script lang="ts" setup>
 import { SectionConfig } from '@/types/enum/sectionList'
+import type { SectionProps } from '@/types/intefaces/sectionSetting'
 import { computed, type ComputedRef } from 'vue'
 import NavigationItem from './common/NavigationItem.vue'
-import type { SectionProps } from '@/types/intefaces/sectionSetting'
+
+const handNavigate = (section: string) => {
+  console.log('Navigate to', section)
+}
 
 const listSectionImage: ComputedRef<SectionProps[]> = computed(() => {
   return Object.entries(SectionConfig).map(([text, png]) => {
