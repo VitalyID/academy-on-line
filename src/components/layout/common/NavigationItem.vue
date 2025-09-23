@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <div class="section__img" v-if="type">
-      <!-- <Icon v-if="type === 'svg' && icon" :iconID="icon" /> -->
+      <Icon v-if="type === 'svg' && icon" :iconID="icon" />
       <img v-if="type === 'png' && png" :src="getImageUrl(png)" alt="iconAsideSection" />
     </div>
     <span :style="{ fontWeight: bold }">{{ text }}</span>
@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts" setup>
-// import Icon from './Icon.vue'
+import Icon from './Icon.vue'
 defineProps({
-  // icon: { type: String, default: null },
+  icon: { type: String, default: null },
   png: { type: String, default: null },
   type: {
     type: String,
-    validator: (value: string) => ['svg', 'png'].includes(value),
+    validator: (value: string | null) => value === null || ['svg', 'png'].includes(value),
     default: null,
   },
   text: { type: String, required: true },

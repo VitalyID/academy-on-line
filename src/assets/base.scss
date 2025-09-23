@@ -1,4 +1,5 @@
 @use './function' as f;
+@use './mixins' as m;
 
 *,
 *::before,
@@ -9,4 +10,14 @@
 :root {
   --aside-padding: #{f.rem(24)};
   --main-padding: #{f.rem(24)};
+}
+
+.wrap {
+  width: 100%;
+  @include m.flex();
+}
+
+.container {
+  width: 1440px;
+  @include m.flex($justify: start);
 }

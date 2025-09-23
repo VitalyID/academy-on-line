@@ -1,27 +1,29 @@
 <template>
-  <div class="aside">
+  <aside class="aside">
     <div class="aside__top">
       <img src="@/assets/images/logo.png" alt="logo" />
       <span>Coursify</span>
     </div>
-    <Section
-      v-for="[key, value, bold] in listSectionImage"
-      :text="key"
-      :png="value"
-      :bold="bold"
+    <NavigationItem
+      v-for="section in listSectionImage"
+      :text="section.text"
+      :png="section.png"
       type="png"
     />
-  </div>
+  </aside>
 </template>
 
 <script lang="ts" setup>
 import { SectionConfig } from '@/types/enum/sectionList'
-import Section from './common/Section.vue'
+import { computed, type ComputedRef } from 'vue'
+import NavigationItem from './common/NavigationItem.vue'
+import type { SectionProps } from '@/types/intefaces/sectionSetting'
 
-const listSectionImage = Object.entries(SectionConfig).map((element, index) => {
-  return [...element, index === 1 || index === 3 ? 400 : 700]
+const listSectionImage: ComputedRef<SectionProps[]> = computed(() => {
+  return Object.entries(SectionConfig).map(([text, png]) => {
+    return { png, text }
+  })
 })
-console.log(listSectionImage)
 </script>
 
 <style lang="scss" scoped>
@@ -30,6 +32,10 @@ console.log(listSectionImage)
 @use '../../assets/function' as f;
 
 .aside {
+  width: 220px;
+  height: 100vh;
+
+  padding: var(--aside-padding);
   background-color: v.$bg-aside-color;
 
   &__top {
