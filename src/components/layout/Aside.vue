@@ -16,7 +16,7 @@
 
 <script lang="ts" setup>
 import { SectionConfig } from '@/types/enum/sectionList'
-import type { SectionProps } from '@/types/intefaces/sectionSetting'
+import type { SectionProps } from '@/types/interfaces/sectionSetting'
 import { computed, type ComputedRef } from 'vue'
 import NavigationItem from './common/NavigationItem.vue'
 

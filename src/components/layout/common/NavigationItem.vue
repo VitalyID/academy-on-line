@@ -36,7 +36,6 @@ const getImageUrl = (name: string) => {
   --iconWidth: var(--iconWidthSection, 24px);
   --iconHeight: var(--iconHeightSection, 24px);
   padding: #{f.rem(13)} #{f.rem(15)};
-  cursor: pointer;
 
   & span {
     @include m.font($size: 12.6px, $color: #adaeb0, $weight: var(--weightSpanSection));
