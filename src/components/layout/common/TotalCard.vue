@@ -3,7 +3,7 @@
     <div class="card__left">
       <img :src="logo || defaultLogo" alt="Логотип карточки студентов" />
       <div class="card__leftInfo">
-        <span>Total Students</span>
+        <span>Total {{ title }}</span>
         <span>{{ formatAmount }}</span>
       </div>
     </div>
