@@ -1,9 +1,5 @@
 <template>
   <div class="revenue">
-    <div class="revenue__top">
-      <h2>Revenue</h2>
-      <span>Last 7 months</span>
-    </div>
     <Line :data="data" :options="options" />
   </div>
 </template>
@@ -39,6 +35,8 @@ const props = defineProps({
     required: true,
   },
 })
+
+console.log(props)
 
 ChartJS.register(
   CategoryScale,
@@ -148,10 +146,6 @@ const options = ref({
     @include m.font($size: 9px, $color: #a8a8aa);
 
     line-height: 11px;
-  }
-
-  &__top {
-    @include m.flex($justify: space-between);
   }
 }
 </style>
