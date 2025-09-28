@@ -4,7 +4,7 @@
       <h2>Revenue</h2>
       <Select
         :style="{
-          '--widthSelect': '70px',
+          '--widthSelect': '90px',
           '--select-span-fontSize': '9px',
           '--select-span-color': '#A8A8AA',
         }"
@@ -14,6 +14,7 @@
     </div>
 
     <Revenue :expense="expense" :income="income" :month="actualRangeMonth" />
+    <EnrollmentsChart :expense="expense" :income="income" :month="actualRangeMonth" />
   </div>
 </template>
 
@@ -23,6 +24,7 @@ import { ListContextSelect } from '@/types/enum/selectContext'
 import { onMounted, ref } from 'vue'
 import Revenue from './Revenue.vue'
 import Select from './Select.vue'
+import EnrollmentsChart from './EnrollmentsChart.vue'
 
 const actualRangeMonth = ref<string[]>([])
 
@@ -53,8 +55,6 @@ function renderCharts(rangeStart: number) {
   actualRangeMonth.value = createListMonth(new Date(firstData).getMonth(), new Date().getMonth())
 
   function createListMonth(startMonth: number, endMonth: number): string[] {
-    console.log(111)
-
     // NOTE: create arr number in range from selector-filter
     const listNumberMonth = Array.from(
       { length: endMonth - startMonth + 1 },
@@ -69,9 +69,6 @@ function renderCharts(rangeStart: number) {
     const actualListMonth = months.filter(([month, number]) => {
       return listNumberMonth.includes(number as number)
     })
-
-    // NOTE:get name of month
-    console.log(actualListMonth.map(([month]) => month))
 
     return actualListMonth.map(([month]) => month)
   }

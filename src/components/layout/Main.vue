@@ -14,8 +14,6 @@
         </div>
 
         <div class="main__graphs">
-          <!-- <Revenue :expense="expense" :income="income" :month="actualRangeMonth" />
-          <p>Здесь будет график</p> -->
           <ChartContainer :style="{ '--width': '50%' }" />
           <ChartContainer :style="{ '--width': '50%' }" />
         </div>
@@ -25,7 +23,6 @@
 </template>
 
 <script lang="ts" setup>
-// import { ListMonth } from '@/types/enum/listMonth'
 import { BackgroundTotalCard, LogoTotalCard } from '@/types/enum/totalCard'
 import type { CardConfig } from '@/types/interfaces/totalCardConfig'
 import Aside from './Aside.vue'
@@ -41,36 +38,6 @@ function fromEnumsTotalCard(): CardConfig[] {
   })
   return totalCardConfig
 }
-
-// NOTE: test
-// const expense: number[] = [2000, 3500, 1850, 5500, 9500, 3400, 2250, 7200]
-// const income: number[] = [4000, 4600, 9000, 2000, 6900, 4530, 3950, 8400]
-
-// const dataRange = new Date()
-// const firstData = dataRange.setMonth(dataRange.getMonth() - 6)
-
-// const actualRangeMonth = createListMonth(new Date(firstData).getMonth(), new Date().getMonth())
-
-// function createListMonth(startMonth: number, endMonth: number): string[] {
-//   // NOTE: create arr number in range from selector-filter
-//   const listNumberMonth = Array.from(
-//     { length: endMonth - startMonth + 1 },
-//     (item, i) => startMonth + i,
-//   )
-
-//   const months = Object.entries(ListMonth).filter((month) => {
-//     return typeof month[1] === 'number'
-//   })
-
-//   // NOTE: intersection between arrays
-//   const actualListMonth = months.filter(([month, number]) => {
-//     return listNumberMonth.includes(number as number)
-//   })
-
-//   // NOTE:get name of month
-//   return actualListMonth.map(([month]) => month)
-// }
-//
 </script>
 
 <style lang="scss" scoped>

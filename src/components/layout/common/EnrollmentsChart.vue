@@ -1,24 +1,24 @@
 <template>
   <div class="revenue">
-    <Line :data="data" :options="options" />
+    <Bar :data="data" :options="options" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import {
+  BarElement,
   CategoryScale,
   Chart as ChartJS,
   Filler,
   Legend,
   LinearScale,
   LineController,
-  LineElement,
   PointElement,
   Title,
   Tooltip,
 } from 'chart.js'
 import { computed, ref, type PropType } from 'vue'
-import { Line } from 'vue-chartjs'
+import { Bar } from 'vue-chartjs'
 
 const props = defineProps({
   expense: {
@@ -36,10 +36,12 @@ const props = defineProps({
   },
 })
 
+console.log(props)
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  LineElement,
+  BarElement,
   PointElement,
   Title,
   Tooltip,
@@ -47,6 +49,8 @@ ChartJS.register(
   LineController,
   Filler,
 )
+
+console.log(props.month)
 
 const data = computed(() => ({
   labels: props.month,

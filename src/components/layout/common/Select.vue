@@ -56,7 +56,6 @@ function userRange(span: SelectItem) {
   }
 
   &__actual {
-    // height: calc(var(--font-size-base) * var(--line-height-base));
     width: 100%;
     cursor: pointer;
   }
@@ -73,13 +72,12 @@ function userRange(span: SelectItem) {
     overflow: auto;
     border-bottom-left-radius: f.rem(10);
     border-bottom-right-radius: f.rem(10);
-    // width: calc(var(--widthSelect) - 2 * #{f.rem(15)});
   }
 
   &__hidden.open {
     background-color: #fff;
     padding: var(--main-padding-select);
-    max-height: f.rem(150);
+    max-height: f.rem(100);
     transition: all 1s;
     transform-origin: top;
     overflow: auto;
