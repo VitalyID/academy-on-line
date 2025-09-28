@@ -86,6 +86,7 @@ function userRange(span: SelectItem) {
   & span {
     display: block;
     text-align: center;
+    cursor: pointer;
     @include m.font($size: var(--select-span-fontSize), $color: var(--select-span-color));
   }
 

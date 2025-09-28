@@ -109,10 +109,6 @@ const options = ref({
         },
       },
     },
-    title: {
-      display: true,
-      text: 'Revenue Chart',
-    },
   },
   scales: {
     y: {

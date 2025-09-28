@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card__top">
-      <h2>Revenue</h2>
+      <h2>{{ props.title }}</h2>
       <Select
         :style="{
           '--widthSelect': '90px',
@@ -13,24 +13,26 @@
       />
     </div>
 
-    <Revenue :expense="expense" :income="income" :month="actualRangeMonth" />
-    <EnrollmentsChart :expense="expense" :income="income" :month="actualRangeMonth" />
+    <component
+      :is="props.contentComponent"
+      :expense="props.componentData.expense"
+      :income="props.componentData.income"
+      :month="props.componentData.actualRangeMonth"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ListMonth } from '@/types/enum/listMonth'
 import { ListContextSelect } from '@/types/enum/selectContext'
-import { onMounted, ref } from 'vue'
-import Revenue from './Revenue.vue'
+import type { ChartContainerProps } from '@/types/interfaces/chartContainerProps'
+import type { UserFilter } from '@/types/interfaces/userFilter'
+import { ref } from 'vue'
 import Select from './Select.vue'
-import EnrollmentsChart from './EnrollmentsChart.vue'
 
 const actualRangeMonth = ref<string[]>([])
+const $emit = defineEmits<{ (event: 'userSelect', payload: UserFilter): void }>()
 
-onMounted(() => {
-  userSelect(5)
-})
+const props = defineProps<ChartContainerProps>()
 
 function contextSelect() {
   const contextSelects: [string, number][] = Object.entries(ListContextSelect).filter(
@@ -45,38 +47,8 @@ function contextSelect() {
 }
 
 function userSelect(data: number) {
-  renderCharts(data)
+  $emit('userSelect', { filter: data, id: props.id })
 }
-
-function renderCharts(rangeStart: number) {
-  const dataRange = new Date()
-  const firstData = dataRange.setMonth(dataRange.getMonth() - rangeStart)
-
-  actualRangeMonth.value = createListMonth(new Date(firstData).getMonth(), new Date().getMonth())
-
-  function createListMonth(startMonth: number, endMonth: number): string[] {
-    // NOTE: create arr number in range from selector-filter
-    const listNumberMonth = Array.from(
-      { length: endMonth - startMonth + 1 },
-      (item, i) => startMonth + i,
-    )
-
-    const months = Object.entries(ListMonth).filter((month) => {
-      return typeof month[1] === 'number'
-    })
-
-    // NOTE: intersection between arrays
-    const actualListMonth = months.filter(([month, number]) => {
-      return listNumberMonth.includes(number as number)
-    })
-
-    return actualListMonth.map(([month]) => month)
-  }
-}
-
-// NOTE: test
-const expense: number[] = [2000, 3500, 1850, 5500, 9500, 3400, 2250, 7200, 9500, 1547, 8745, 3654]
-const income: number[] = [4000, 4600, 9000, 2000, 6900, 4530, 3950, 8400, 5412, 6250, 5470, 2400]
 </script>
 
 <style lang="scss" scoped>
