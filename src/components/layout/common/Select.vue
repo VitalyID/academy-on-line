@@ -28,7 +28,7 @@ const props = defineProps<SelectPropsConfig>()
 const $emit = defineEmits(['userSelect'])
 
 const open = ref(false)
-const actualFilter = ref(props.context[3].span)
+const actualFilter = ref(props.context[1].span)
 
 function openSelector() {
   open.value = true
@@ -77,7 +77,7 @@ function userRange(span: SelectItem) {
   &__hidden.open {
     background-color: #fff;
     padding: var(--main-padding-select);
-    max-height: f.rem(100);
+    max-height: f.rem(70);
     transition: all 1s;
     transform-origin: top;
     overflow: auto;
