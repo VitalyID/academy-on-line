@@ -17,7 +17,8 @@
       :is="props.contentComponent"
       :expense="props.componentData.expense"
       :income="props.componentData.income"
-      :month="props.componentData.actualRangeMonth"
+      :enrollment="props.componentData.enrollment"
+      :actualRangeMonth="props.componentData.actualRangeMonth"
     />
   </div>
 </template>

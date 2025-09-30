@@ -30,11 +30,13 @@ const props = defineProps({
     required: true,
   },
 
-  month: {
+  actualRangeMonth: {
     type: Array as PropType<string[]>,
     required: true,
   },
 })
+
+console.log(props)
 
 ChartJS.register(
   CategoryScale,
@@ -49,7 +51,7 @@ ChartJS.register(
 )
 
 const data = computed(() => ({
-  labels: props.month,
+  labels: props.actualRangeMonth,
 
   datasets: [
     {

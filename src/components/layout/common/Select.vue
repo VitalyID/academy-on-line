@@ -28,7 +28,7 @@ const props = defineProps<SelectPropsConfig>()
 const $emit = defineEmits(['userSelect'])
 
 const open = ref(false)
-const actualFilter = ref(props.context[1].span)
+const actualFilter = ref(props.context[2].span)
 
 function openSelector() {
   open.value = true

@@ -17,20 +17,16 @@ import {
   Title,
   Tooltip,
 } from 'chart.js'
-import { computed, ref, type PropType } from 'vue'
+import { computed, ref, watch, type PropType } from 'vue'
 import { Bar } from 'vue-chartjs'
 
 const props = defineProps({
-  expense: {
-    type: Array as PropType<number[]>,
-    required: true,
-  },
-  income: {
+  enrollment: {
     type: Array as PropType<number[]>,
     required: true,
   },
 
-  month: {
+  actualRangeMonth: {
     type: Array as PropType<string[]>,
     required: true,
   },
@@ -50,27 +46,13 @@ ChartJS.register(
   Filler,
 )
 
-console.log(props.month)
-
 const data = computed(() => ({
-  labels: props.month,
+  labels: props.actualRangeMonth,
 
   datasets: [
     {
-      label: 'Income',
-      data: props.income,
-      borderColor: 'rgb(59, 130, 246)',
-      borderDash: [],
-      pointBorderWidth: 2,
-      pointRadius: 5,
-      pointHoverRadius: 7,
-      borderWidth: 3,
-      backgroundColor: 'rgba(59, 130, 246, 0.8)',
-      tension: 0.4,
-    },
-    {
-      label: 'Expense',
-      data: props.expense,
+      label: 'Enrollment',
+      data: props.enrollment,
       borderColor: 'rgb(34, 197, 94)',
       backgroundColor: 'rgba(34, 197, 94, 0.8)',
       borderDash: [5, 5],
