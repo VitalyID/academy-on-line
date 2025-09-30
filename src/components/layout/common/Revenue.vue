@@ -30,7 +30,7 @@ const props = defineProps({
     required: true,
   },
 
-  month: {
+  actualRangeMonth: {
     type: Array as PropType<string[]>,
     required: true,
   },
@@ -49,26 +49,26 @@ ChartJS.register(
 )
 
 const data = computed(() => ({
-  labels: props.month,
+  labels: props.actualRangeMonth,
 
   datasets: [
     {
       label: 'Income',
       data: props.income,
-      borderColor: 'rgb(59, 130, 246)',
+      borderColor: 'rgb(251, 174, 228)',
       borderDash: [],
       pointBorderWidth: 2,
       pointRadius: 5,
       pointHoverRadius: 7,
       borderWidth: 3,
-      backgroundColor: 'rgba(59, 130, 246, 0.8)',
+      backgroundColor: 'rgba(251, 174, 228, 0.8)',
       tension: 0.4,
     },
     {
       label: 'Expense',
       data: props.expense,
-      borderColor: 'rgb(34, 197, 94)',
-      backgroundColor: 'rgba(34, 197, 94, 0.8)',
+      borderColor: 'rgb(0,0,0)',
+      backgroundColor: 'rgba(0,0,0, 0.8)',
       borderDash: [5, 5],
       pointBorderWidth: 2,
       pointRadius: 5,

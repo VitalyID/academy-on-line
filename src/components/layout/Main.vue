@@ -51,6 +51,21 @@ import TotalCard from './common/TotalCard.vue'
 
 const actualRangeMonth = ref<string[]>([])
 
+const actualEnrollment = {
+  January: 4000,
+  February: 4600,
+  March: 9000,
+  April: 2000,
+  May: 6900,
+  June: 4530,
+  July: 3950,
+  August: 8400,
+  September: 5412,
+  October: 6250,
+  November: 5470,
+  December: 2400,
+}
+
 const dataRevenue = ref<ChartContainerProps>({
   contentComponent: Revenue,
   componentData: {
@@ -65,32 +80,40 @@ const dataRevenue = ref<ChartContainerProps>({
 const dataEnrollment = ref<ChartContainerProps>({
   contentComponent: EnrollmentsChart,
   componentData: {
-    expense: [2000, 3500, 1850, 5500, 9500, 3400, 2250, 7200, 9500, 1547, 8745, 3654],
-    income: [4000, 4600, 9000, 2000, 6900, 4530, 3950, 8400, 5412, 6250, 5470, 2400],
+    enrollment: actualEnrollment,
     actualRangeMonth: renderCharts(3),
   },
   id: 'enrollment',
-  title: 'Enrollment',
+  title: 'Enrollment Trends',
 })
 
 function UpdateDataComponent(data: UserFilter) {
+  console.log(data)
+
   if (data.id === 'revenue') {
-    dataRevenue.value = {
-      ...dataRevenue.value,
-      componentData: {
-        ...dataRevenue.value.componentData,
-        actualRangeMonth: renderCharts(data.filter),
-      },
+    if (dataRevenue.value.componentData.expense && dataRevenue.value.componentData.income) {
+      dataRevenue.value = {
+        ...dataRevenue.value,
+        componentData: {
+          ...dataRevenue.value.componentData,
+          expense: dataRevenue.value.componentData.expense.slice(-data.filter),
+          income: dataRevenue.value.componentData.income.slice(-data.filter),
+          actualRangeMonth: renderCharts(data.filter),
+        },
+      }
     }
   }
 
   if (data.id === 'enrollment') {
-    dataEnrollment.value = {
-      ...dataEnrollment.value,
-      componentData: {
-        ...dataEnrollment.value.componentData,
-        actualRangeMonth: renderCharts(data.filter),
-      },
+    if (dataRevenue.value.componentData.enrollment) {
+      dataEnrollment.value = {
+        ...dataEnrollment.value,
+        componentData: {
+          ...dataEnrollment.value.componentData,
+          enrollment: dataRevenue.value.componentData.enrollment.slice(-data.filter),
+          actualRangeMonth: renderCharts(data.filter),
+        },
+      }
     }
   }
 }
