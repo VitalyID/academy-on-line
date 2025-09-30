@@ -113,6 +113,21 @@ const listEnrollment: DateNumber[] = [
   { date: '2025-11-15T00:00:00.000Z', value: 4236 },
 ]
 
+const actualEnrollment = {
+  January: 4000,
+  February: 4600,
+  March: 9000,
+  April: 2000,
+  May: 6900,
+  June: 4530,
+  July: 3950,
+  August: 8400,
+  September: 5412,
+  October: 6250,
+  November: 5470,
+  December: 2400,
+}
+
 const dataRevenue = ref<ChartContainerProps>({
   contentComponent: markRaw(Revenue),
   componentData: {
@@ -141,7 +156,7 @@ const dataEnrollment = ref<ChartContainerProps>({
     }),
   },
   id: 'enrollment',
-  title: 'Enrollment',
+  title: 'Enrollment Trends',
 })
 
 onMounted(() => {
@@ -180,6 +195,17 @@ function UpdateDataComponent(data: UserFilter) {
           return item.date
         }),
       },
+
+      // if (dataRevenue.value.componentData.expense && dataRevenue.value.componentData.income) {
+      //   dataRevenue.value = {
+      //     ...dataRevenue.value,
+      //     componentData: {
+      //       ...dataRevenue.value.componentData,
+      //       expense: dataRevenue.value.componentData.expense.slice(-data.filter),
+      //       income: dataRevenue.value.componentData.income.slice(-data.filter),
+      //       actualRangeMonth: renderCharts(data.filter),
+      //     },
+      //   }
     }
   }
 
@@ -194,6 +220,16 @@ function UpdateDataComponent(data: UserFilter) {
           return item.date
         }),
       },
+
+      // if (dataRevenue.value.componentData.enrollment) {
+      //   dataEnrollment.value = {
+      //     ...dataEnrollment.value,
+      //     componentData: {
+      //       ...dataEnrollment.value.componentData,
+      //       enrollment: dataRevenue.value.componentData.enrollment.slice(-data.filter),
+      //       actualRangeMonth: renderCharts(data.filter),
+      //     },
+      //   }
     }
   }
 }

@@ -5,6 +5,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ListMonth } from '@/types/enum/listMonth'
+import type { GraphConfig } from '@/types/interfaces/graphConfig'
 import {
   BarElement,
   CategoryScale,
@@ -17,6 +19,7 @@ import {
   Title,
   Tooltip,
 } from 'chart.js'
+
 import { computed, ref, watch, type PropType } from 'vue'
 import { Bar } from 'vue-chartjs'
 
@@ -32,7 +35,12 @@ const props = defineProps({
   },
 })
 
-console.log(props)
+// console.log(props)
+
+// import { computed, ref } from 'vue'
+// import { Bar } from 'vue-chartjs'
+
+// const props = defineProps<GraphConfig>()
 
 ChartJS.register(
   CategoryScale,
@@ -55,11 +63,18 @@ const data = computed(() => ({
       data: props.enrollment,
       borderColor: 'rgb(34, 197, 94)',
       backgroundColor: 'rgba(34, 197, 94, 0.8)',
+
+      // label: 'Expense',
+      // data: props.enrollment as number[],
+      // borderColor: getArrayColumnColor(props),
+      // backgroundColor: getArrayColumnColor(props),
+
       borderDash: [5, 5],
       pointBorderWidth: 2,
       pointRadius: 5,
       pointHoverRadius: 7,
       borderWidth: 3,
+      borderRadius: 10,
       tension: 0.4,
     },
   ],
@@ -69,7 +84,7 @@ const options = ref({
   responsive: true,
   plugins: {
     legend: {
-      display: true,
+      display: false,
       position: 'top' as const,
       align: 'start' as const,
       labels: {
@@ -102,6 +117,19 @@ const options = ref({
     },
   },
 })
+
+function getArrayColumnColor(props: GraphConfig): string[] {
+  if (!props.enrollment?.length) return ['']
+  const maxValue = Math.max(...props.enrollment)
+
+  const colorArr: string[] = []
+
+  props.enrollment?.forEach((item) => {
+    item === maxValue ? colorArr.push('orange') : colorArr.push('rgb(251, 174, 228)')
+  })
+
+  return colorArr
+}
 </script>
 
 <style lang="scss" scoped>

@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import Icon from './Icon.vue'
 import type { SelectItem, SelectPropsConfig } from '@/types/interfaces/selectProps'
 
@@ -29,6 +29,10 @@ const $emit = defineEmits(['userSelect'])
 
 const open = ref(false)
 const actualFilter = ref(props.context[2].span)
+
+onMounted(() => {
+  userRange(props.context[5])
+})
 
 function openSelector() {
   open.value = true
