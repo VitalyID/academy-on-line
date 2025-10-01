@@ -1,10 +1,10 @@
 export interface GraphConfig {
   expense?: number[]
   income?: number[]
-<<<<<<< HEAD
+
   enrollment?: number[]
-=======
-  enrollment?: Record<string, number>
->>>>>>> fixedSrylesBugs
+
+  // enrollment?: Record<string, number>
+
   actualRangeMonth: string[]
 }

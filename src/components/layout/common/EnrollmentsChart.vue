@@ -61,13 +61,13 @@ const data = computed(() => ({
     {
       label: 'Enrollment',
       data: props.enrollment,
-      borderColor: 'rgb(34, 197, 94)',
-      backgroundColor: 'rgba(34, 197, 94, 0.8)',
+      // borderColor: 'rgb(34, 197, 94)',
+      // backgroundColor: 'rgba(34, 197, 94, 0.8)',
 
       // label: 'Expense',
       // data: props.enrollment as number[],
-      // borderColor: getArrayColumnColor(props),
-      // backgroundColor: getArrayColumnColor(props),
+      borderColor: getArrayColumnColor(props),
+      backgroundColor: getArrayColumnColor(props),
 
       borderDash: [5, 5],
       pointBorderWidth: 2,
