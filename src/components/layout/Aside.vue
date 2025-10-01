@@ -1,28 +1,35 @@
-<script setup>
-import { SectionConfig } from '@/types/enum/sectionList'
-import Section from './common/Section.vue'
-
-const listSectionImage = Object.entries(SectionConfig).map((element, index) => {
-  return [...element, index === 1 || index === 3 ? 400 : 700]
-})
-console.log(listSectionImage)
-</script>
-
 <template>
-  <div class="aside">
+  <aside class="aside">
     <div class="aside__top">
       <img src="@/assets/images/logo.png" alt="logo" />
       <span>Coursify</span>
     </div>
-    <Section
-      v-for="[key, value, bold] in listSectionImage"
-      :text="key"
-      :png="value"
-      :bold="bold"
+    <NavigationItem
+      v-for="section in listSectionImage"
+      :text="section.text"
+      :png="section.png"
       type="png"
+      @click="handNavigate(section.text)"
     />
-  </div>
+  </aside>
 </template>
+
+<script lang="ts" setup>
+import { SectionConfig } from '@/types/enum/sectionList'
+import type { SectionProps } from '@/types/intefaces/sectionSetting'
+import { computed, type ComputedRef } from 'vue'
+import NavigationItem from './common/NavigationItem.vue'
+
+const handNavigate = (section: string) => {
+  console.log('Navigate to', section)
+}
+
+const listSectionImage: ComputedRef<SectionProps[]> = computed(() => {
+  return Object.entries(SectionConfig).map(([text, png]) => {
+    return { png, text }
+  })
+})
+</script>
 
 <style lang="scss" scoped>
 @use '../../assets/mixins' as m;
@@ -30,6 +37,10 @@ console.log(listSectionImage)
 @use '../../assets/function' as f;
 
 .aside {
+  width: 220px;
+  height: 100vh;
+
+  padding: var(--aside-padding);
   background-color: v.$bg-aside-color;
 
   &__top {
