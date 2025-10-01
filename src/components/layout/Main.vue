@@ -179,8 +179,6 @@ function updatedValueCharts(range: number, list: DateNumber[]): DateNumber[] {
 }
 
 function UpdateDataComponent(data: UserFilter) {
-  console.log(data)
-
   if (data.id === 'revenue') {
     dataRevenue.value = {
       ...dataRevenue.value,
@@ -195,17 +193,6 @@ function UpdateDataComponent(data: UserFilter) {
           return item.date
         }),
       },
-
-      // if (dataRevenue.value.componentData.expense && dataRevenue.value.componentData.income) {
-      //   dataRevenue.value = {
-      //     ...dataRevenue.value,
-      //     componentData: {
-      //       ...dataRevenue.value.componentData,
-      //       expense: dataRevenue.value.componentData.expense.slice(-data.filter),
-      //       income: dataRevenue.value.componentData.income.slice(-data.filter),
-      //       actualRangeMonth: renderCharts(data.filter),
-      //     },
-      //   }
     }
   }
 
@@ -220,16 +207,6 @@ function UpdateDataComponent(data: UserFilter) {
           return item.date
         }),
       },
-
-      // if (dataRevenue.value.componentData.enrollment) {
-      //   dataEnrollment.value = {
-      //     ...dataEnrollment.value,
-      //     componentData: {
-      //       ...dataEnrollment.value.componentData,
-      //       enrollment: dataRevenue.value.componentData.enrollment.slice(-data.filter),
-      //       actualRangeMonth: renderCharts(data.filter),
-      //     },
-      //   }
     }
   }
 }

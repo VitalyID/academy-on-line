@@ -31,7 +31,7 @@ const open = ref(false)
 const actualFilter = ref(props.context[2].span)
 
 onMounted(() => {
-  userRange(props.context[5])
+  userRange(props.context[2])
 })
 
 function openSelector() {
