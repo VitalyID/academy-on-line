@@ -1,6 +1,6 @@
 <template>
   <svg class="icon">
-    <use :xlink:href="`#${iconID}`"></use>
+    <use :xlink:href="`src/assets/icons/sprite.svg#${iconID}`"></use>
   </svg>
 </template>
 
@@ -10,8 +10,8 @@ defineProps({ iconID: { type: String, required: true } })
 
 <style lang="scss" scoped>
 .icon {
-  width: var(--iconWidth);
-  height: var(--iconHeight);
+  width: var(--iconWidth, 24px);
+  height: var(--iconHeight, 24px);
   fill: var(--iconFill);
 }
 </style>

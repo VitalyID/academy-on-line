@@ -1,15 +1,24 @@
 @use './function' as f;
 @use './mixins' as m;
 
+:root {
+  --aside-padding: #{f.rem(24)};
+  --main-padding: #{f.rem(24)};
+  --main-total-card-padding: #{f.rem(11)};
+  --main-gap: #{f.rem(20)};
+
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+
+  --main-padding-select: #{f.rem(5)};
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-:root {
-  --aside-padding: #{f.rem(24)};
-  --main-padding: #{f.rem(24)};
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
 }
 
 .wrap {
