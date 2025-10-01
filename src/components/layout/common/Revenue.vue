@@ -36,8 +36,6 @@ const props = defineProps({
   },
 })
 
-console.log(props)
-
 ChartJS.register(
   CategoryScale,
   LinearScale,

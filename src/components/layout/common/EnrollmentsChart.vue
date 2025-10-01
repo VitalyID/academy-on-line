@@ -1,11 +1,10 @@
 <template>
   <div class="revenue">
-    <Bar :data="data" :options="options" />
+    <Bar :data="data" :options="options" :plugins="plugin" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ListMonth } from '@/types/enum/listMonth'
 import type { GraphConfig } from '@/types/interfaces/graphConfig'
 import {
   BarElement,
@@ -18,9 +17,11 @@ import {
   PointElement,
   Title,
   Tooltip,
+  type ChartOptions,
 } from 'chart.js'
 
-import { computed, ref, watch, type PropType } from 'vue'
+import ChartDataLabels from 'chartjs-plugin-datalabels'
+import { computed, ref, type PropType } from 'vue'
 import { Bar } from 'vue-chartjs'
 
 const props = defineProps({
@@ -34,13 +35,6 @@ const props = defineProps({
     required: true,
   },
 })
-
-// console.log(props)
-
-// import { computed, ref } from 'vue'
-// import { Bar } from 'vue-chartjs'
-
-// const props = defineProps<GraphConfig>()
 
 ChartJS.register(
   CategoryScale,
@@ -75,9 +69,30 @@ const data = computed(() => ({
   ],
 }))
 
-const options = ref({
+const options = ref<ChartOptions<'bar'>>({
   responsive: true,
   plugins: {
+    datalabels: {
+      anchor: 'end',
+      align: 'end',
+      formatter: Math.round,
+      font: {
+        weight: 400,
+        size: 9,
+        family: 'Inter',
+      },
+      backgroundColor: '#D8E6FE',
+      borderColor: '#E8F0FF',
+      borderWidth: 2,
+      borderRadius: 8,
+      padding: {
+        top: 2,
+        bottom: 2,
+        left: 8,
+        right: 8,
+      },
+      color: '#C5A9BF',
+    },
     legend: {
       display: false,
       position: 'top' as const,
@@ -112,6 +127,8 @@ const options = ref({
     },
   },
 })
+
+const plugin = [ChartDataLabels]
 
 function getArrayColumnColor(props: GraphConfig): string[] {
   if (!props.enrollment?.length) return ['']

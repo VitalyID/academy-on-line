@@ -30,7 +30,6 @@ import type { UserFilter } from '@/types/interfaces/userFilter'
 import { ref } from 'vue'
 import Select from './Select.vue'
 
-// const actualRangeMonth = ref<string[]>([])
 const $emit = defineEmits<{ (event: 'userSelect', payload: UserFilter): void }>()
 
 const props = defineProps<ChartContainerProps>()
